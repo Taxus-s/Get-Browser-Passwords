@@ -91,7 +91,7 @@ def chrome_finder():
     if __name__ == "__main__":
         chrome_main()
 
-def chrome_finder_sub():
+def chrome_finder_sub(): # This checks if the google account has any stored passwords
     def get_chrome_datetime(chromedate):
         """Return a `datetime.datetime` object from a chrome format datetime
         Since `chromedate` is formatted as the number of microseconds since January, 1601"""
