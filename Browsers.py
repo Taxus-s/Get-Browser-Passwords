@@ -398,5 +398,5 @@ elif browser_choise.lower() == 'opera':
 
 
 
-#this is the end
+# When the code ends this will stop it from exiting immediatly
 input('\n\n\nThis is the End...')
