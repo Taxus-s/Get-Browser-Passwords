@@ -26,12 +26,6 @@ while True:
         print(f'{p_path} is not valid')
         print('Names are case sensitive.')
         continue
-    
-
-
-
-
-
 
 def chrome_finder():
     def get_chrome_datetime(chromedate):
@@ -414,11 +408,6 @@ elif browser_choise.lower() == 'opera':
         print('Opera is not installed')
         input('\nPress Enter to Exit...')
         quit()
-
-
-
-
-
 
 
 
