@@ -14,11 +14,24 @@ while True:
     if os.path.exists(p_path) == True:
         if profile == '':
             p_path = os.environ["USERPROFILE"]
+        try:
+            file = open(f"{p_path}\\f.txt", "w")
+            file.close()
+            os.remove(f"{p_path}\\f.txt")
+        except PermissionError:
+            print(f'You do not have permission for {p_path}')
+            continue
         break
     elif os.path.exists(p_path) == False:
         print(f'{p_path} is not valid')
         print('Names are case sensitive.')
         continue
+    
+
+
+
+
+
 
 def chrome_finder():
     def get_chrome_datetime(chromedate):
@@ -351,9 +364,8 @@ def opera_finder():
     if __name__ == "__main__":
         opera_main()
 
+
 browser_choise = input('Chrome, Edge, Opera, All: ')
-
-
 
 if browser_choise.lower() == 'all':
 
@@ -402,6 +414,10 @@ elif browser_choise.lower() == 'opera':
         print('Opera is not installed')
         input('\nPress Enter to Exit...')
         quit()
+
+
+
+
 
 
 
